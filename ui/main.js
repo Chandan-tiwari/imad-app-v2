@@ -21,7 +21,7 @@ button.onclick=function(){
             //not doneyet
         };
         //make the request
-        request.open('GET','http://chandan-tiwari.imad.hasura-app.io/counter,true');
+        request.open('GET','http://chandan-tiwari.imad.hasura-app.io/counter',true);
         request.send(null);
 };
     
