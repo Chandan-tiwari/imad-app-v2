@@ -85,7 +85,7 @@ function createTemplate (data) {
    var title =data.title;
    var date= data.date;
    var heading = date.heading;
-   var containt = data.containt;
+   var containt = data.content;
    
    var hrmlTemplate = `
     <html>
