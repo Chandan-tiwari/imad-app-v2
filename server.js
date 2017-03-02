@@ -1,7 +1,13 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var Pool=require('pg').Pool;
+
+var app=express();
+app.use(morgan('combined'));
+
+
+
+/*var Pool=require('pg').Pool;
 
 var config={
     user:'chandan-tiwari',
@@ -35,10 +41,74 @@ app.get('/test-db',function(req,res){
             res.send(JSON.stringify(result.rows));
         }
     });
-});
+});*/
+
+var articleOne={
+    title:'Article one |CHANDAN TIWARI',
+    heading:'Article one',
+    date:'4th feb,2017',
+    content:    ` 
+           <p>
+                This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.
+            </p>
+            <p>
+                    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.
+            </p>
+            <p>
+                This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.
+            </p>` 
+            
+};
+function createTemplate (data) {
+   var title =data.title;
+   var date= data.date;
+   var heading = date.heading;
+   var containt = data.containt;
+   
+   var hrmlTemplate = `
+    <html>
+    <head>
+        <title>
+            ${title}
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <style>
+            .container{
+                max-width:800px;
+                margin:0 auto;
+                color:blue;
+                font-family:sans-seri;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        <div>
+            <a hrf="/">HOME</a>
+        </div>
+        <hr/>
+        <h3>
+            ${heading}
+        </h3>
+        <div>
+            ${date}
+        </div>
+        <div>
+        ${content}
+           </p>
+        </div></div>
+    </body>
+    </html>
+   `;
+   return htmlTemplate;
+}   
+ 
+ app.get('/',function(req,res){
+  res.sendFile(path.join(__dirname,'ui','index.html'));
+ });
 
 app.get('/article-one',function(req,res){
-    res.sendFile(path.join(__dirname,'ui','article-one.html'));
+    res.send(createTemplate(articleOne));
    });
 
 app.get('/article-two',function(req,res){
