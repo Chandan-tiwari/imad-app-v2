@@ -7,7 +7,7 @@ app.use(morgan('combined'));
 
 
 
-/*var Pool=require('pg').Pool;
+var Pool=require('pg').Pool;
 
 var config={
     user:'chandan-tiwari',
@@ -41,7 +41,7 @@ app.get('/test-db',function(req,res){
             res.send(JSON.stringify(result.rows));
         }
     });
-});*/
+});
 
    var articles ={ 
       'article-one':{
