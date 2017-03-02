@@ -84,7 +84,7 @@ app.get('/test-db',function(req,res){
 function createTemplate (data) {
    var title =data.title;
    var date= data.date;
-   var heading = date.heading;
+   var heading = data.heading;
    var content = data.content;
    
    var hrmlTemplate = `
