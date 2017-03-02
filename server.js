@@ -43,7 +43,8 @@ app.get('/test-db',function(req,res){
     });
 });*/
 
-var articleOne={
+   var articles ={ 
+      'article-one':{
     title:'Article one |CHANDAN TIWARI',
     heading:'Article one',
     date:'4th feb,2017',
@@ -58,7 +59,28 @@ var articleOne={
                 This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.    This is the content for my first article.
             </p>` 
             
-};
+              },
+              
+        'article-two':{
+            title:'Article Two |CHANDAN TIWARI',
+            heading:'Article two',
+            date:'5th feb,2017',
+            content:    ` 
+                   <p>
+                      This is the content for my second article.    
+            
+                   </p>`
+              },
+   
+        'article-three': { title:'Article Three |CHANDAN TIWARI',
+        heading:'Article three',
+        date:'7th feb,2017',
+        content:    ` 
+           <p>
+                This is the content for my third article.    
+            
+            </p>`},
+   };
 function createTemplate (data) {
    var title =data.title;
    var date= data.date;
@@ -107,8 +129,10 @@ function createTemplate (data) {
   res.sendFile(path.join(__dirname,'ui','index.html'));
  });
 
-app.get('/article-one',function(req,res){
-    res.send(createTemplate(articleOne));
+app.get('/:articleName',function(req,res){
+    //articleName=articlr-one
+    var articleName = req.params.articleName;
+    res.send(createTemplate(articles[articleName ]));
    });
 
 app.get('/article-two',function(req,res){
@@ -118,7 +142,7 @@ app.get('/article-two',function(req,res){
 app.get('/article-three',function(req,res){
    res.sendFile(path.join(__dirname,'ui','article-three.html')); 
 });
-app.get('/ui/tyle.css', function (req, res) {
+app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
 
