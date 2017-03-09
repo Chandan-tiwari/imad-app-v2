@@ -22,7 +22,16 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-
+  
+  function hash(input,salt){
+      //how to we create a hash
+      var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
+  }
+  
+  app.get('/hash/:input'function(req,res){
+      var hashedString = hash(req.params.input,'this-is-some-randam-string');
+      res.send(hashedString);
+  });
 var counter=0;
 app.get('/counter',function(req, res)
 {
